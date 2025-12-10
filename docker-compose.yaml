@@ -17,11 +17,12 @@ services:
       - .:/docs
 
   php-api:
-    image: "openml/php-rest-api"
     build:
       context: ./docker/php/
     ports:
       - "8002:80"
+    volumes:
+    - ../OpenML:/var/www/openml
     depends_on:
       elasticsearch:
         condition: service_healthy
